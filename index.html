@@ -257,7 +257,11 @@
 </section>
 
 <script>
-      const quizForm = document.getElementById("quizForm");
+  function gradeQuiz(event) {
+    // Optional: prevent form from submitting
+    if (event) event.preventDefault();
+
+    const quizForm = document.getElementById("quizForm");
     const resultsDiv = document.getElementById("quizResults");
 
     let score = 0;
@@ -326,7 +330,6 @@
     document.getElementById("quizResults").innerHTML = "";
   }
 </script>
-
 <footer style="background-color: #333; color: white; text-align: center; padding: 15px;">  <!-- a small background that is a different color to distinguish that it's the footer  -->
     <p>This is the link to the class website: <a href="https://ksuweb.github.io/IT3203/" target="_blank" style="color: #00bfff;">IT 3203 Website</a></p>
 </footer>
