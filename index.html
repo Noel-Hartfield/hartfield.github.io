@@ -264,7 +264,7 @@
     let total = 5;
     let feedback = "";
 
-    // Q1
+    // Q1 has a value it check(which is the third option)
     const q1 = quizForm.q1.value;
     if (q1 === "c") {
       score++; 
@@ -291,7 +291,7 @@
       feedback += "<p>Q3: ❌ Incorrect - Correct answer: Mackerel.</p>";
     }
 
-    // Q4
+    // Q4 creates a blank input box that checks for the specific string 154 
     const q4 = quizForm.q4.value.trim();
     if (q4 === "154") {
       score++;
@@ -300,7 +300,7 @@
       feedback += `<p>Q4: ❌ Incorrect - Correct answer: 154 mg.</p>`;
     }
 
-    // Q5
+    // Q5 creates a array list that are boxes to choose from
     const q5 = quizForm.querySelectorAll('input[name="q5"]:checked');
     const q5Values = Array.from(q5).map(cb => cb.value).sort().join("");
     if (q5Values === "ac") {
