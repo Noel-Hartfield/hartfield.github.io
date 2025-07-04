@@ -259,7 +259,7 @@
 <script>
   function gradeQuiz() {
     const quizForm = document.getElementById("quizForm");
-    const resultsDiv = document.getElementById("quizResults");
+    const resultsDiv = document.getElementById("quizResults"); < // This creates a form for the user to interact with//
 
     let score = 0;
     let total = 5;
@@ -268,10 +268,10 @@
     // Q1: Only one correct answer
     const q1 = quizForm.q1.value;
     if (q1 === "c") {
-      score++;
+      score++; //adds to the number counter to indicate that one question is completed//
       feedback += "<p>Q1: ✅ Correct - 70% Dark Chocolate is highest in Magnesium.</p>";
     } else {
-      feedback += "<p>Q1: ❌ Incorrect - Correct answer: 70% Dark Chocolate.</p>";
+      feedback += "<p>Q1: ❌ Incorrect - Correct answer: 70% Dark Chocolate.</p>"; 
     }
 
     // Q2
@@ -293,7 +293,7 @@
     }
 
     // Q4: Fill in the blank (must match exactly "154")
-    const q4 = quizForm.q4.value.trim();
+    const q4 = quizForm.q4.value.trim(); //creates a blank box to input text
     if (q4 === "154") {
       score++;
       feedback += "<p>Q4: ✅ Correct - Peanut butter has 154 mg of Magnesium.</p>";
@@ -302,9 +302,9 @@
     }
 
     // Q5: Multiple correct choices
-    const q5 = quizForm.querySelectorAll('input[name="q5"]:checked');
-    const q5Values = Array.from(q5).map(cb => cb.value).sort().join("");
-    if (q5Values === "ac") {
+    const q5 = quizForm.querySelectorAll('input[name="q5"]:checked'); //changes the interact button into boxes to be clicked on 
+    const q5Values = Array.from(q5).map(cb => cb.value).sort().join(""); //creates array for the option
+    if (q5Values === "ac") { //this check the input for answer 1 and 3
       score++;
       feedback += "<p>Q5: ✅ Correct - Salmon and Mackerel are rich in Omega-3.</p>";
     } else {
@@ -312,14 +312,14 @@
     }
 
     const resultSummary = `<h3>Your Score: ${score}/${total}</h3>`;
-    const passFail = `<strong style="color:${score >= 3 ? 'green' : 'red'}">${score >= 3 ? 'PASS' : 'FAIL'}</strong>`;
+    const passFail = `<strong style="color:${score >= 3 ? 'green' : 'red'}">${score >= 3 ? 'PASS' : 'FAIL'}</strong>`; // once the score is record it check if the user pass if the majority is answered correctly//
 
     resultsDiv.innerHTML = `
       ${resultSummary}
       <p>Result: ${passFail}</p>
       ${feedback}
       <button onclick="restartQuiz()">Restart Quiz</button>
-    `;
+    `; // this part just displays if they passed or failed//
   }
 
   function restartQuiz() {
