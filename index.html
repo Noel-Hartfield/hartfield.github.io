@@ -257,15 +257,14 @@
 </section>
 
 <script>
-  function gradeQuiz() {
-    const quizForm = document.getElementById("quizForm");
-    const resultsDiv = document.getElementById("quizResults"); 
+      const quizForm = document.getElementById("quizForm");
+    const resultsDiv = document.getElementById("quizResults");
 
     let score = 0;
     let total = 5;
     let feedback = "";
 
-    // Q1: Only one correct answer
+    // Q1
     const q1 = quizForm.q1.value;
     if (q1 === "c") {
       score++; 
@@ -292,8 +291,8 @@
       feedback += "<p>Q3: ❌ Incorrect - Correct answer: Mackerel.</p>";
     }
 
-    // Q4: Fill in the blank (must match exactly "154")
-    const q4 = quizForm.q4.value.trim(); 
+    // Q4
+    const q4 = quizForm.q4.value.trim();
     if (q4 === "154") {
       score++;
       feedback += "<p>Q4: ✅ Correct - Peanut butter has 154 mg of Magnesium.</p>";
@@ -301,10 +300,10 @@
       feedback += `<p>Q4: ❌ Incorrect - Correct answer: 154 mg.</p>`;
     }
 
-    // Q5: Multiple correct choices
-    const q5 = quizForm.querySelectorAll('input[name="q5"]:checked'); 
+    // Q5
+    const q5 = quizForm.querySelectorAll('input[name="q5"]:checked');
     const q5Values = Array.from(q5).map(cb => cb.value).sort().join("");
-    if (q5Values === "ac") { 
+    if (q5Values === "ac") {
       score++;
       feedback += "<p>Q5: ✅ Correct - Salmon and Mackerel are rich in Omega-3.</p>";
     } else {
