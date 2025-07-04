@@ -257,94 +257,75 @@
 </section>
 
 <script>
-function gradeQuiz() {
-  let score = 0;
-  let feedback = [];
+  function gradeQuiz() {
+    const quizForm = document.getElementById("quizForm");
+    const resultsDiv = document.getElementById("quizResults");
 
-  // Q1
-  const q1 = document.querySelector('input[name="q1"]:checked');
-  if (q1) {
-    if (q1.value === "c") {
+    let score = 0;
+    let total = 5;
+    let feedback = "";
+
+    // Q1: Only one correct answer
+    const q1 = quizForm.q1.value;
+    if (q1 === "c") {
       score++;
-      feedback.push("Q1: Correct! 70% Dark Chocolate is high in Magnesium.");
+      feedback += "<p>Q1: ✅ Correct - 70% Dark Chocolate is highest in Magnesium.</p>";
     } else {
-      feedback.push("Q1: Incorrect. Correct answer is 70% Dark Chocolate.");
+      feedback += "<p>Q1: ❌ Incorrect - Correct answer: 70% Dark Chocolate.</p>";
     }
-  } else {
-    feedback.push("Q1: No answer selected.");
-  }
 
-  // Q2
-  const q2 = document.querySelector('input[name="q2"]:checked');
-  if (q2) {
-    if (q2.value === "a") {
+    // Q2
+    const q2 = quizForm.q2.value;
+    if (q2 === "a") {
       score++;
-      feedback.push("Q2: Correct! Lentils are rich in Iron.");
+      feedback += "<p>Q2: ✅ Correct - Lentils are rich in Iron.</p>";
     } else {
-      feedback.push("Q2: Incorrect. Correct answer is Lentils.");
+      feedback += "<p>Q2: ❌ Incorrect - Correct answer: Lentils.</p>";
     }
-  } else {
-    feedback.push("Q2: No answer selected.");
-  }
 
-  // Q3
-  const q3 = document.querySelector('input[name="q3"]:checked');
-  if (q3) {
-    if (q3.value === "a") {
+    // Q3
+    const q3 = quizForm.q3.value;
+    if (q3 === "a") {
       score++;
-      feedback.push("Q3: Correct! Mackerel is high in Vitamin D.");
+      feedback += "<p>Q3: ✅ Correct - Mackerel is high in Vitamin D.</p>";
     } else {
-      feedback.push("Q3: Incorrect. Correct answer is Mackerel.");
+      feedback += "<p>Q3: ❌ Incorrect - Correct answer: Mackerel.</p>";
     }
-  } else {
-    feedback.push("Q3: No answer selected.");
-  }
 
-  // Q4 - Fill in the blank
-  const q4 = document.querySelector('input[name="q4"]').value.trim();
-  if (q4 !== "") {
+    // Q4: Fill in the blank (must match exactly "154")
+    const q4 = quizForm.q4.value.trim();
     if (q4 === "154") {
       score++;
-      feedback.push("Q4: Correct! Peanut butter has 154 mg of Magnesium.");
+      feedback += "<p>Q4: ✅ Correct - Peanut butter has 154 mg of Magnesium.</p>";
     } else {
-      feedback.push("Q4: Incorrect. Correct answer is 154 mg.");
+      feedback += `<p>Q4: ❌ Incorrect - Correct answer: 154 mg.</p>`;
     }
-  } else {
-    feedback.push("Q4: No answer provided.");
+
+    // Q5: Multiple correct choices
+    const q5 = quizForm.querySelectorAll('input[name="q5"]:checked');
+    const q5Values = Array.from(q5).map(cb => cb.value).sort().join("");
+    if (q5Values === "ac") {
+      score++;
+      feedback += "<p>Q5: ✅ Correct - Salmon and Mackerel are rich in Omega-3.</p>";
+    } else {
+      feedback += "<p>Q5: ❌ Incorrect - Correct answers: Salmon and Mackerel.</p>";
+    }
+
+    const resultSummary = `<h3>Your Score: ${score}/${total}</h3>`;
+    const passFail = `<strong style="color:${score >= 3 ? 'green' : 'red'}">${score >= 3 ? 'PASS' : 'FAIL'}</strong>`;
+
+    resultsDiv.innerHTML = `
+      ${resultSummary}
+      <p>Result: ${passFail}</p>
+      ${feedback}
+      <button onclick="restartQuiz()">Restart Quiz</button>
+    `;
   }
 
-  // Q5 - Multiple select
-  const q5 = document.querySelectorAll('input[name="q5"]:checked');
-  const selected = Array.from(q5).map(i => i.value).sort().join(",");
-  const correct = ["a", "c"].sort().join(",");
-  if (selected === correct) {
-    score++;
-    feedback.push("Q5: Correct! Salmon and Mackerel are rich in Omega-3.");
-  } else {
-    feedback.push("Q5: Incorrect. Correct answers are Salmon and Mackerel.");
+  function restartQuiz() {
+    document.getElementById("quizForm").reset();
+    document.getElementById("quizResults").innerHTML = "";
   }
-
-  // Final result
-  const result = `<h3>Your Score: ${score}/5</h3>
-  <ul>${feedback.map(f => `<li>${f}</li>`).join("")}</ul>
-  <h3 style="color:${score >= 3 ? 'green' : 'red'}">${score >= 3 ? 'PASS' : 'FAIL'}</h3>`;
-
-  document.getElementById("quizResults").innerHTML = result;
-}
-  function resetQuiz() {
-  // Clear all radio buttons
-  document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
-
-  // Clear all checkboxes
-  document.querySelectorAll('input[type="checkbox"]').forEach(input => input.checked = false);
-
-  // Clear text inputs
-  document.querySelectorAll('input[type="text"]').forEach(input => input.value = "");
-
-  // Clear results
-  document.getElementById("quizResults").innerHTML = "";
-}
-  <button onclick="resetQuiz()">Restart Quiz</button>
 </script>
 
 <footer style="background-color: #333; color: white; text-align: center; padding: 15px;">  <!-- a small background that is a different color to distinguish that it's the footer  -->
