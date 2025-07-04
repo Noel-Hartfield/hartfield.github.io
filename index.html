@@ -217,6 +217,122 @@
        <!-- tied a URL to text with a brief discript of what it is  -->
     </ul>
   </section>
+
+  <section id="quiz">
+  <h2>Nutrition Quiz</h2>
+  <form id="quizForm">
+    <!-- Q1 -->
+    <p><strong>1. Which food is highest in Magnesium?</strong></p>
+    <label><input type="radio" name="q1" value="a"> Banana</label><br>
+    <label><input type="radio" name="q1" value="b"> Tofu</label><br>
+    <label><input type="radio" name="q1" value="c"> 70% Dark Chocolate</label><br>
+
+    <!-- Q2 -->
+    <p><strong>2. Which of these is rich in Iron?</strong></p>
+    <label><input type="radio" name="q2" value="a"> Lentils</label><br>
+    <label><input type="radio" name="q2" value="b"> Salmon</label><br>
+    <label><input type="radio" name="q2" value="c"> Banana</label><br>
+
+    <!-- Q3 -->
+    <p><strong>3. Which food is a good source of Vitamin D?</strong></p>
+    <label><input type="radio" name="q3" value="a"> Mackerel</label><br>
+    <label><input type="radio" name="q3" value="b"> Sweet Potatoes</label><br>
+    <label><input type="radio" name="q3" value="c"> Apple</label><br>
+
+    <!-- Q4 -->
+    <p><strong>4. Fill in the blank: 100 grams of peanut butter has ____ mg of Magnesium.</strong></p>
+    <input type="text" name="q4"><br>
+
+    <!-- Q5 -->
+    <p><strong>5. Select all foods high in Omega-3 (choose two):</strong></p>
+    <label><input type="checkbox" name="q5" value="a"> Salmon</label><br>
+    <label><input type="checkbox" name="q5" value="b"> Banana</label><br>
+    <label><input type="checkbox" name="q5" value="c"> Mackerel</label><br>
+
+    <br>
+    <button type="button" onclick="gradeQuiz()">Submit Quiz</button>
+  </form>
+
+  <div id="quizResults" style="margin-top: 20px;"></div>
+</section>
+
+<script>
+function gradeQuiz() {
+  let score = 0;
+  let feedback = [];
+
+  // Q1
+  const q1 = document.querySelector('input[name="q1"]:checked');
+  if (q1) {
+    if (q1.value === "c") {
+      score++;
+      feedback.push("Q1: Correct! 70% Dark Chocolate is high in Magnesium.");
+    } else {
+      feedback.push("Q1: Incorrect. Correct answer is 70% Dark Chocolate.");
+    }
+  } else {
+    feedback.push("Q1: No answer selected.");
+  }
+
+  // Q2
+  const q2 = document.querySelector('input[name="q2"]:checked');
+  if (q2) {
+    if (q2.value === "a") {
+      score++;
+      feedback.push("Q2: Correct! Lentils are rich in Iron.");
+    } else {
+      feedback.push("Q2: Incorrect. Correct answer is Lentils.");
+    }
+  } else {
+    feedback.push("Q2: No answer selected.");
+  }
+
+  // Q3
+  const q3 = document.querySelector('input[name="q3"]:checked');
+  if (q3) {
+    if (q3.value === "a") {
+      score++;
+      feedback.push("Q3: Correct! Mackerel is high in Vitamin D.");
+    } else {
+      feedback.push("Q3: Incorrect. Correct answer is Mackerel.");
+    }
+  } else {
+    feedback.push("Q3: No answer selected.");
+  }
+
+  // Q4 - Fill in the blank
+  const q4 = document.querySelector('input[name="q4"]').value.trim();
+  if (q4 !== "") {
+    if (q4 === "154") {
+      score++;
+      feedback.push("Q4: Correct! Peanut butter has 154 mg of Magnesium.");
+    } else {
+      feedback.push("Q4: Incorrect. Correct answer is 154 mg.");
+    }
+  } else {
+    feedback.push("Q4: No answer provided.");
+  }
+
+  // Q5 - Multiple select
+  const q5 = document.querySelectorAll('input[name="q5"]:checked');
+  const selected = Array.from(q5).map(i => i.value).sort().join(",");
+  const correct = ["a", "c"].sort().join(",");
+  if (selected === correct) {
+    score++;
+    feedback.push("Q5: Correct! Salmon and Mackerel are rich in Omega-3.");
+  } else {
+    feedback.push("Q5: Incorrect. Correct answers are Salmon and Mackerel.");
+  }
+
+  // Final result
+  const result = `<h3>Your Score: ${score}/5</h3>
+  <ul>${feedback.map(f => `<li>${f}</li>`).join("")}</ul>
+  <h3 style="color:${score >= 3 ? 'green' : 'red'}">${score >= 3 ? 'PASS' : 'FAIL'}</h3>`;
+
+  document.getElementById("quizResults").innerHTML = result;
+}
+</script>
+
 <footer style="background-color: #333; color: white; text-align: center; padding: 15px;">  <!-- a small background that is a different color to distinguish that it's the footer  -->
     <p>This is the link to the class website: <a href="https://ksuweb.github.io/IT3203/" target="_blank" style="color: #00bfff;">IT 3203 Website</a></p>
 </footer>
