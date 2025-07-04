@@ -331,6 +331,20 @@ function gradeQuiz() {
 
   document.getElementById("quizResults").innerHTML = result;
 }
+  function resetQuiz() {
+  // Clear all radio buttons
+  document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
+
+  // Clear all checkboxes
+  document.querySelectorAll('input[type="checkbox"]').forEach(input => input.checked = false);
+
+  // Clear text inputs
+  document.querySelectorAll('input[type="text"]').forEach(input => input.value = "");
+
+  // Clear results
+  document.getElementById("quizResults").innerHTML = "";
+}
+  <button onclick="resetQuiz()">Restart Quiz</button>
 </script>
 
 <footer style="background-color: #333; color: white; text-align: center; padding: 15px;">  <!-- a small background that is a different color to distinguish that it's the footer  -->
