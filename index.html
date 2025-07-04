@@ -95,7 +95,7 @@
        <li><a href="#topic4">Topic 4: Food good in  Omega-3</a></li>
        <li><a href="#topic5">Topic 5: Food good in Vitamin D </a></li>
       <li><a href="#references">References</a></li>
-       <!-- display a list for all the topics  -->
+       <!-- display a list of all the topics  -->
     </ul>
   </section>
 
@@ -303,7 +303,7 @@
 
     // Q5: Multiple correct choices
     const q5 = quizForm.querySelectorAll('input[name="q5"]:checked'); //changes the interact button into boxes to be clicked on 
-    const q5Values = Array.from(q5).map(cb => cb.value).sort().join(""); //creates array for the option
+    const q5Values = Array.from(q5).map(cb => cb.value).sort().join(""); //creates array for the options
     if (q5Values === "ac") { //this check the input for answer 1 and 3
       score++;
       feedback += "<p>Q5: ✅ Correct - Salmon and Mackerel are rich in Omega-3.</p>";
@@ -312,13 +312,13 @@
     }
 
     const resultSummary = `<h3>Your Score: ${score}/${total}</h3>`;
-    const passFail = `<strong style="color:${score >= 3 ? 'green' : 'red'}">${score >= 3 ? 'PASS' : 'FAIL'}</strong>`; // once the score is record it check if the user pass if the majority is answered correctly//
+    const passFail = `<strong style="color:${score >= 3 ? 'green' : 'red'}">${score >= 3 ? 'PASS' : 'FAIL'}</strong>`;  
 
     resultsDiv.innerHTML = `
       ${resultSummary}
       <p>Result: ${passFail}</p>
       ${feedback}
-      <button onclick="restartQuiz()">Restart Quiz</button>
+      <button onclick="restartQuiz()">Restart Quiz</button> 
     `;
   }
 
