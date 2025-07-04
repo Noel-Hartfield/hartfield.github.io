@@ -214,7 +214,7 @@
       <li><a href="https://www.healthline.com/nutrition/what-does-potassium-do#:~:text=The%20takeaway,osteoporosis%20and%20possibly%20kidney%20stones." target="_blank">healthline.com</a> - Potassium Info</li>
       <li><a href="https://www.mayoclinic.org/drugs-supplements-vitamin-d/art-20363792#:~:text=Vitamin%20D%20is%20a%20nutrient,muscles%20and%20brain%20cells%20working." target="_blank">mayoclinic.org</a> - Vitamin D Info</li>
       <li><a href="https://www.redcrossblood.org/local-homepage/news/article/iron-in-blood.html" target="_blank">redcrossblood.org</a> - Iron Info</li>
-       <!-- tied a URL to text with a brief discript of what it is  -->
+       <!-- tied a URL to text with a brief description of what it is  -->
     </ul>
   </section>
 
@@ -312,13 +312,13 @@
     }
 
     const resultSummary = `<h3>Your Score: ${score}/${total}</h3>`;
-    const passFail = `<strong style="color:${score >= 3 ? 'green' : 'red'}">${score >= 3 ? 'PASS' : 'FAIL'}</strong>`;  
+    const passFail = `<strong style="color:${score >= 3 ? 'green' : 'red'}">${score >= 3 ? 'PASS' : 'FAIL'}</strong>`;
 
     resultsDiv.innerHTML = `
       ${resultSummary}
       <p>Result: ${passFail}</p>
       ${feedback}
-      <button onclick="restartQuiz()">Restart Quiz</button> 
+      <button onclick="restartQuiz()">Restart Quiz</button>
     `;
   }
 
