@@ -28,6 +28,7 @@
       text-decoration: none;
       margin: 8px 15px;
       font-weight: bold;
+      padding: 8px;
     }
 
     nav a:hover {
@@ -78,12 +79,26 @@
     form {
       max-width: 600px;
       margin: auto;
+      padding: 0 20px;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
     }
 
     form input[type="text"],
     form input[type="radio"],
     form input[type="checkbox"] {
-      margin-bottom: 10px;
+      margin-bottom: 15px;
+    }
+
+    form input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      box-sizing: border-box;
     }
 
     form button {
@@ -93,10 +108,16 @@
       color: white;
       border: none;
       cursor: pointer;
+      width: 100%;
     }
 
-    form button: hover {
+    form button:hover {
       background-color: #555;
+    }
+
+    #quizResults button {
+      margin-top: 15px;
+      background-color: #444;
     }
 
     footer {
@@ -167,20 +188,21 @@
         max-width: 100%;
       }
 
-      form button {
-        width: 100%;
-        font-size: 18px;
+      form input[type="text"] {
+        font-size: 16px;
+        padding: 10px;
       }
 
-      form input[type="text"] {
-        width: 100%;
-        font-size: 16px;
-        padding: 8px;
+      form button {
+        font-size: 18px;
       }
     }
   </style>
 </head>
 <body>
+
+<!-- Your quiz and sections go here -->
+
 <script>
   function gradeQuiz(event) {
     if (event) event.preventDefault();
